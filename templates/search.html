@@ -1,0 +1,84 @@
+{% extends "layout.html" %}
+
+{% block body %}
+<style>
+    .row {
+        padding-top: 10px;
+    }
+    .grid {
+        max-height: 150px;
+        margin: 20px;
+    }
+    button.me {
+        color: blue;
+    }
+    .mi {
+        margin-top: 10px;
+    }
+    body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+    padding-bottom: 10em;
+  }
+    footer {
+    text-align: center;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    min-height:90px ;
+    z-index: 1;
+  }  
+
+</style>
+{% if session.logged_in %}
+<div class="row">
+    <form class="col s12" action="{{ url_for('search') }}" method="post">
+      <div class="row">
+        <div class="input-field col s6">
+          <input id="search" type="text" name="search" class="validate" placeholder="search a word e.g Jaws">
+          <label for="search">Search</label>
+          <span class="helper-text" data-error="wrong" data-success="right">Type and press enter to search</span>
+        </div>
+        <div class="button col s6">
+            <button type="submit" class="btn waves-effect waves-light light-blue lighten-1 mi" >Search</button>
+        </div>
+      </div>
+    </form>
+</div>
+{% else %}
+<div class="row">
+    <h3>Log In For more</h3>
+</div>
+{% endif %}
+
+{% if results %}
+<div class="row">
+<h4><strong>Filtered Results</strong></h4>
+<h5>{{word}}</h5>
+    {% for result in results %}
+    <form action=" {{ url_for('book_details', book_id=result.id) }} " method="post">
+        <div class="col s3 m4">  
+            <div class="card light-blue lighten-1 grid">
+                <div class="card-content white-text">
+                <span class="card-title" style="font-size: large;">{{result.title}}</span>
+                <p>{{result.author}}.</p>
+                </div>
+                {% if session.logged_in %}
+                <div class="card-action">
+                    <button class="btn waves-effect white me" type="submit" name="action">View Book
+                        <i class="material-icons right"></i>
+                    </button>
+                </div>
+                {% else %}
+                {% endif %}
+            </div>
+        </div>
+    </form>
+    {% endfor %}
+</div>
+{% else %}
+<h4>No Result Found</h4>
+{% endif %}
+
+{% endblock %}

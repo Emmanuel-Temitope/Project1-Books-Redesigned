@@ -1,0 +1,20 @@
+{% extends "layout.html" %}
+
+{% block body %}
+<style type="text/css">
+	.container {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		min-height: 70vh;
+
+	}
+</style>
+	<main>
+		<div class="container" style="width: 500px;">
+			<img src="{{ url_for('static', filename='img/404.png') }}" style="max-width: 50px;margin-bottom: 20px;">
+			<h3 style="text-align: center;font-family: cursive;font-weight: small;">Oops!, That request is not permitted on this page.</h3>
+		</div>
+	</main>
+{% endblock %}

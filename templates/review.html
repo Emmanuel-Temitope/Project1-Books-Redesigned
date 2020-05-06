@@ -1,0 +1,27 @@
+{% extends "layout.html" %}
+
+
+{% block body %}
+
+<style type="text/css">
+	.review {
+		width: 300px;
+		margin: auto;
+		padding-top: 5rem;
+	}
+	.rev-chi {
+		text-align: center;
+		color: rgba(138, 204, 72, 0.999);
+	}
+	.rev-img {
+		max-width: 150px;
+	}
+</style>
+
+<div class="review">
+	<img class="rev-img ml-4" src="{{ url_for('static', filename='img/explore/b3.png') }}">
+	<h3 class="rev-chi mr-5">Review Added Successfully</h3>
+</div>
+
+
+{% endblock %}

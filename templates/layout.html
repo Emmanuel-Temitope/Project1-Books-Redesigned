@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
+  <title>Bookie</title>
+
+  <!-- CSS  -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="{{ url_for('static', filename='css/materialize.css') }}" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="{{ url_for('static', filename='css/style.css') }}" type="text/css" rel="stylesheet" media="screen,projection"/>
+</head>
+<body>
+
+  <style>
+  .brand-logo {
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  }
+
+ body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+  }
+
+  footer {
+    text-align: center;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    min-height: 90px;
+    z-index: 1;
+
+  }  
+  </style>
+  <nav class="light-blue lighten-1" role="navigation" style="min-height: 70px;padding-top: 10px;">
+    <div class="nav-wrapper container"><a id="logo-container" href="/" class="brand-logo">BOOKIE</a>
+      <ul class="right hide-on-med-and-down">
+        {% if session.logged_in %}
+        <li><a href="/">Home</a></li>
+        <li><a href="{{ url_for('explore') }}">Explore</a></li>
+        <li><a href="{{ url_for('logout') }}">Log out</a></li>
+        {% else %}
+        <li><a href="/">Home</a></li>
+        <li><a href="{{ url_for('explore') }}">Explore</a></li>
+        <li><a href="{{ url_for('signup_page') }}">Sign Up</a></li>
+        <li><a href="{{ url_for('login_page') }}">Log In</a></li>
+        {% endif %}
+      </ul>
+
+      <ul id="nav-mobile" class="sidenav">
+        {% if session.logged_in %}
+        <li><a href="/">Home</a></li>
+        <li><a href="{{ url_for('explore') }}">Explore</a></li>
+        <li><a href="{{ url_for('logout') }}">Log out</a></li>
+        {% else %}
+        <li><a href="/">Home</a></li>
+        <li><a href="{{ url_for('explore') }}">Explore</a></li>
+        <li><a href="{{ url_for('signup_page') }}">Sign Up</a></li>
+        <li><a href="{{ url_for('login_page') }}">Log In</a></li>
+        {% endif %}
+      </ul>
+      <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+    </div>
+  </nav>
+  {% with messages = get_flashed_messages() %}
+	{% if messages %}
+		{% for message in messages %}
+		<div class="alert alert-warning alert-dismissible fade show" role="alert" style="text-align: center;">
+				{{ message }}
+			<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+				<span aria-hidden="true">&times;</span>
+			</button>
+		</div>
+	
+		{% endfor %}
+	{% endif %}
+{% endwith %}
+  {% block div %}
+
+  {% endblock %}
+
+
+  <div class="container">
+    {% block body %}
+    {% endblock %}
+  </div>
+
+  <footer class="page-footer light-blue lighten-1">
+    <div class="container">
+      <div class="row">
+        <div class="col s12">
+          <h6>&copy <span id="date">2019</span>. BOOKIE</h6>
+        </div>
+      </div>
+    </div>
+
+  </footer>
+
+  <script>
+  var d = new Date();
+  document.getElementById("date").innerHTML = d.getFullYear();
+  </script>
+  <!--  Scripts-->
+  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script src="{{ url_for('static', filename='js/materialize.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/init.js') }}"></script>
+
+  </body>
+</html>
