@@ -2,7 +2,6 @@ Flask
 Flask-Session
 psycopg2-binary
 SQLAlchemy
-functools
 wtforms
 passlib
 gc
