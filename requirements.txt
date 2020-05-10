@@ -4,7 +4,6 @@ psycopg2-binary
 SQLAlchemy
 wtforms
 passlib
-gc
 Click==7.0
 gunicorn==19.9.0
 itsdangerous==1.1.0
