@@ -19,6 +19,7 @@ if not os.getenv("DATABASE_URL"):
 # Configure session to use filesystem
 app.config["SESSION_PERMANENT"] = False
 app.config["SESSION_TYPE"] = "filesystem"
+app.config["DATABASE_URL"] = 'postgres://zskmzakb:GCQ-GfroFibuP9a-XgBJoIhvjHvnrbo1@isilo.db.elephantsql.com:5432/zskmzakb'
 Session(app)
 
 # Set up database
