@@ -1,1 +1,1 @@
-web: gunicorn app:boview
+web: gunicorn app:app
